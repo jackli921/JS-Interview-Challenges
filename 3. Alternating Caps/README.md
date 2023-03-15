@@ -1,4 +1,4 @@
-# JavaScript Interview Challenges #3 - Alternating Caps  
+# Challenges #3 - Alternating Caps  
 
 ## Description
 /* Alternating Caps 

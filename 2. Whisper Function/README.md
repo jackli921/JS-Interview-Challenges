@@ -1,4 +1,4 @@
-# JavaScript Interview Challenges #2 - Whisper Function  
+# Challenge #2 - Whisper Function  
  
 ## Description
 /* Whispering function 
