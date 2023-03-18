@@ -14,30 +14,39 @@ const slotMachine = document.querySelector('.emoji-slots-game');
 const food = 'https://apis.scrimba.com/emojihub/api/all/category/food-and-drink';
 
 function makeFruitArray(arr){
-    // arr.forEach(item => console.log(`${item.name} ${item.category} ${item.group}`))
-    const fruitArr = arr.filter(item => {
-        if(item.group === "food fruit"){
-            return item.htmlCode
-        }
-    })
+
+    return arr.filter(item => item.group.includes("fruit"))
     
-    getRandomFruits(fruitArr)
 
 }
 
 function getRandomFruits(arr){
     
-    arr.sort(()=> Math.random() - 0.5 )
-    let randomFruitHTML = arr.map(item => {
-        return `
-            <li>${item.htmlCode}</li>
+    //initialize a new arr to hold 9 random fruit
+    let randomFruitArr = []
+    for(let i = 0; i < 9 ; i++){
+        
+        let randomNum = Math.floor(Math.random()* 9)
+        randomFruitArr.push(arr[randomNum])
+    }
+    return randomFruitArr
+
+}
+
+function render(arr){
+    arr.forEach(item => {
+        slotMachine.innerHTML += `
+        <li>
+        ${item.htmlCode}
+        </li>
         `
-    }).join("")
-    
-    slotMachine.innerHTML = randomFruitHTML
+    })
 }
 
 fetch(food)
     .then(res => res.json())
     .then(data => makeFruitArray(data))
+    .then(fruits => getRandomFruits(fruits))
+    .then(fruit => render(fruit))
+    .catch(err => console.log(err))
 // write your fetch request here 
